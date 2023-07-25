@@ -1,0 +1,1 @@
+Building an ecommerce application using Object Oriented Programming paradigm with flask backend
