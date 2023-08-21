@@ -1,9 +1,22 @@
-from flask import Flask
-app = Flask(__name__)
+from product import Product
+import json
 
-@app.route("/")
-def hello():
-    return "Hello, World! This is the backend of the e-commerce application"
+def main():
+    products = []
+    with open("./output.json", 'r') as f:
+        json_data = json.load(f)
+    for item in json_data:
+        product = Product(
+            image=item.get('image'),
+            title=item.get('title'),
+            price=item.get('price'),
+            description=item.get('description')
+        )
+        products.append(product)
+    return products
 
-if __name__ == '__main__':
-    app.run(debug=True)
+if __name__ == "__main__":
+    print(main())
+    # product_list  = Product.instantiate_from_json()
+    # for each in product_list:
+    #     print(each.get_details())
