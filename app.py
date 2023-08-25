@@ -5,6 +5,8 @@ from product import Products
 from cart import Cart
 import json, random
 
+
+# will be integrating the search.py functionality to pass products to app.py
 def main():
     products = []
     with open("./output.json", 'r') as f:
@@ -37,6 +39,9 @@ if user[0]:
     user_cart.remove_from_cart(displayed_products[1])
     print(len(user_cart.display_cart()))
     print(user_cart.calculate_total())
+
+    #testing the order class functionality
+    print(user_cart.checkout().get_order_details())
 
 # if __name__ == "__main__":
 #     print(main())

@@ -8,9 +8,10 @@ class Order:
         self.products = products
         self.total_cost = order_total
         self.order_date = order_date
+        self.status = "Pending"
     
     def get_order_details(self):
-        return f"Order_ID:{self.order_id}\nOrder_total:{self.order_total}\nOrder_datetime:{self.order_date}\nProducts_Ordered{self.products}"
+        return f"Order_ID:{self.order_id}\nOrder_total:{self.total_cost}\nOrder_datetime:{self.order_date}\nProducts_Ordered{self.products}"
     
     # def add_item(self, product, quantity, price):
     #     self.items.append({"product": product, "quantity": quantity, "price": price})
@@ -28,8 +29,31 @@ class Order:
             self.total_cost -= discount_amount
             print(f"Coupon '{coupon_code}' applied. Discount of ${discount_amount:.2f} applied to the order.")
 
-    def calculate_total_cost(self):
-        return self.total_cost
+    def place_order(self):
+        if self.status != "Pending":
+            return "Order has already been placed or processed."
+
+        # Simulate payment processing
+        payment_status = self.process_payment()
+
+        if payment_status == "Success":
+            # Simulate updating inventory
+            inventory_updated = self.update_inventory()
+
+            if inventory_updated:
+                self.status = "Processing"
+                return "Order placed successfully. Order is being processed."
+            else:
+                return "Failed to update inventory. Order could not be placed."
+        else:
+            return "Payment failed. Order could not be placed."
+
+    def process_payment(self):
+        # Return "Success" if payment is successful, otherwise return "Failed"
+        return "Success"
+    
+    def update_inventory(self):
+        pass
     
 
     
