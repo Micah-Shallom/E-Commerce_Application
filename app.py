@@ -1,3 +1,5 @@
+# this py file will mimick the application interface as I test out all classes and functionalities
+
 from user import User
 from product import Products
 from cart import Cart

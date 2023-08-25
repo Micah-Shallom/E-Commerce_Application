@@ -1,3 +1,7 @@
+from order import Order
+import datetime, uuid
+
+
 class Cart:
     def __init__(self, user_id):
         self.user_id = user_id
@@ -19,5 +23,13 @@ class Cart:
         return self.total_price
     
     def checkout(self):
-        # Checkout logic
-        pass
+        #generate order datetime
+        current_datetime = datetime.datetime.now()
+        order_datetime = current_datetime.strftime("%Y-%m-%d %H:%M:%S")
+
+        #generate order_id
+        order_id = uuid.uuid4().hex[:10].upper()
+
+        #instantiate order class for user product in cart
+        order = Order(order_id, self.user_id,self.products,self.total_price,order_datetime)
+        
