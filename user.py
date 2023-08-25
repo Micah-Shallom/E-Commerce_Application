@@ -4,8 +4,8 @@ class User:
     registered_users = dict()
     user_id_counter = 1
 
-    def __init__(self,password=None, user_id=None, username=None, email=None):
-        # self.user_id = user_id
+    def __init__(self, username, email,password):
+        self.user_id = User.user_id_counter
         self.username = username
         self.email = email
         self.password_hash = hashlib.sha256(password.encode()).hexdigest()
@@ -33,16 +33,16 @@ class User:
         if username in cls.registered_users:
             user = cls.registered_users[username]
             if user.verify_password(password):
-                return "Login Successful"
+                return True,user,"Login Successful"
             else:
                 return "Incorrect Password. Please try again"
         else: return "Username not found!! Register user"
 
 
-# Register new users and display registration/login messages
-print(User.register("alice", "alice@example.com", "password123"))
-print(User.register("bob", "bob@example.com", "pass456"))
-print(User.login("alice", "password123"))
-print(User.login("bob", "wrongpassword"))
-print(User.login("carol", "somepassword"))
+# # Register new users and display registration/login messages
+# print(User.register("alice", "alice@example.com", "password123"))
+# print(User.register("bob", "bob@example.com", "pass456"))
+# print(User.login("alice", "password123"))
+# print(User.login("bob", "wrongpassword"))
+# print(User.login("carol", "somepassword"))
  

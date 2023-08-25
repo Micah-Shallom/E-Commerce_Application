@@ -1,6 +1,6 @@
 import json
 
-class Product:
+class Products:
     def __init__(self, image, title, price, description):
         self.image = image
         self.title = title
