@@ -15,8 +15,8 @@ user = User.login("mshallom","password123")
 
 if user[0]:
     print(products[1].price)
-    user_id = user[1].user_id
-    user_cart = Cart(user_id)
+    user = user[1]
+    user_cart = Cart(user)
 
     #lets select some of the products which will go to the cart class
     #in real life this will be the user clicking the add-to-cart button on each desired product
