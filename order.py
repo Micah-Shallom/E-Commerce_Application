@@ -2,9 +2,9 @@ class Order:
     current_valid_coupons = {'group5dynamite':10,
                             'group5fortheWin':30}
 
-    def __init__(self, order_id, user_id, products, order_total, order_date):
+    def __init__(self, order_id, user, products, order_total, order_date):
         self.order_id = order_id
-        self.user_id = user_id
+        self.user = user
         self.products = products
         self.total_cost = order_total
         self.order_date = order_date
