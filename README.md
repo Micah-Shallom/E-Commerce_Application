@@ -4,3 +4,5 @@
 
 ### Assignment - Object Oriented Programming Course
 ### School - Ahmadu Bello University
+
+Application interface(dummy) - run `python3 app.py`
