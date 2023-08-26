@@ -31,6 +31,6 @@ class Cart:
         order_id = uuid.uuid4().hex[:10].upper()
 
         #instantiate order class for user product in cart
-        order = Order(order_id, self.user_id,self.products,self.total_price,order_datetime)
+        order = Order(order_id, self.user,self.products,self.total_price,order_datetime)
         
         return order

@@ -1,4 +1,4 @@
-import hashlib, random
+import hashlib
 
 class User:
     registered_users = dict()
@@ -18,7 +18,7 @@ class User:
     @classmethod
     def register(cls,username,email,password):
         if username in cls.registered_users:
-            return "User already exits. Proceed to Login"
+            return False, "User already exits. Proceed to Login"
         else:
             new_user = cls(username,email,password)
             # User.registered_users[username] = {
@@ -26,17 +26,23 @@ class User:
             #     "email": email,
             #     "password": password
             # }
-            return "Registration successful. You can now login"
+            return True, "Registration successful. You can now login"
     
     @classmethod
     def login(cls,username,password):
-        if username in cls.registered_users:
-            user = cls.registered_users[username]
-            if user.verify_password(password):
-                return True,user,"Login Successful"
-            else:
-                return "Incorrect Password. Please try again"
-        else: return "Username not found!! Register user"
+        try:
+            if username in cls.registered_users:
+                user = cls.registered_users[username]
+                if user.verify_password(password):
+                    return True, user
+                else:
+                    return False, "Incorrect Password!! Please try again."
+            else: 
+                return False, "Username not found!! Please Register user"
+
+        except Exception as e:
+            print("An Error occurred during login",e)
+            return False, None
 
 
 # # Register new users and display registration/login messages
