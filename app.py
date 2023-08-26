@@ -7,36 +7,24 @@ import json, random
 
 
 # will be integrating the search.py functionality to pass products to app.py
-def main():
-    products = []
-    with open("./output.json", 'r') as f:
-        json_data = json.load(f)
-    for item in json_data:
-        product = Products(
-            image=item.get('image'),
-            title=item.get('title'),
-            price=int(item.get('price')[3:].replace(',','')),
-            description=item.get('description')
-        )
-        products.append(product)
-    return products
+products = Products.load_products_from_file('./output.json')
 
 #Create a new user then login
 User.register("mshallom", "micahshallom@gmail.com", "password123")
 user = User.login("mshallom","password123")
 
 if user[0]:
-    displayed_products = main() #Lets call the main function
-    print(displayed_products[1].price)
+    print(products[1].price)
     user_id = user[1].user_id
     user_cart = Cart(user_id)
 
     #lets select some of the products which will go to the cart class
+    #in real life this will be the user clicking the add-to-cart button on each desired product
     for i in range(5):
-        user_cart.add_to_cart(displayed_products[i])
+        user_cart.add_to_cart(products[i])
 
     #testing the removal of a product from cart
-    user_cart.remove_from_cart(displayed_products[1])
+    user_cart.remove_from_cart(products[1])
     print(len(user_cart.display_cart()))
     print(user_cart.calculate_total())
 

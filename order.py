@@ -53,7 +53,7 @@ class Order:
         return "Success"
     
     def update_inventory(self):
-        pass
+        return True
     
 
     
